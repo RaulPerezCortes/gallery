@@ -87,10 +87,25 @@
     color: var(--bg);
   }
 
+  .bio-quote {
+    max-width: 680px;
+    margin: 110px auto 0px;
+    padding: 0 20px;
+    text-align: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+    line-height: 1.4;
+    color: #ffffff;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+    font-style: italic;
+  }
+
   /* ---- Layout Justificado Flexbox (Estilo Google Photos) ---- */
   .grid{
     max-width: 1600px;
-    margin: 92px auto 60px;
+    margin: 24px auto 60px;
     padding: 0 var(--gap);
     display: flex;
     flex-wrap: wrap;
@@ -235,6 +250,10 @@
     <button data-type="all" class="active">Todo</button>
     <button data-type="photo">Fotos</button>
     <button data-type="video">Vídeos</button>
+  </div>
+
+  <div class="bio-quote">
+    Still the same kid who takes everything apart to see how it works — technology, sport, family: different fields, same curiosity.
   </div>
 
   <main class="grid" id="grid"></main>
