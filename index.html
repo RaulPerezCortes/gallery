@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #15141a;
+    --bg-alt: #1e1c24;
+    --text: #efece6;
+    --text-dim: #8b8894;
+    --accent: #6fa8b8;
+    --gap: 10px; /* Reducido un poco para que el mosaico se vea más compacto y limpio */
+    --radius: 6px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .grain{
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---- Selector ---- */
+  .switcher{
+    position: fixed;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    display: flex;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 999px;
+    padding: 4px;
+  }
+
+  .switcher .pill{
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 0;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: transform 0.4s cubic-bezier(.65,0,.35,1), width 0.4s cubic-bezier(.65,0,.35,1);
+    z-index: 1;
+  }
+
+  .switcher button{
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 9px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.35s;
+  }
+
+  .switcher button.active{
+    color: var(--bg);
+  }
+
+  /* ---- Layout Justificado Flexbox (Estilo Google Photos) ---- */
+  .grid{
+    max-width: 1600px;
+    margin: 92px auto 60px;
+    padding: 0 var(--gap);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+  }
+
+  /* Alturas base por dispositivo: Flexbox ajustará los anchos según esto */
+  :root {
+    --row-height: 130px; /* En móvil, altura contenida para que las fotos horizontales no se recorten */
+  }
+  @media (min-width: 560px) { :root { --row-height: 180px; } }
+  @media (min-width: 900px) { :root { --row-height: 240px; } }
+  @media (min-width: 1280px){ :root { --row-height: 300px; } }
+
+  /* Este elemento previene que las fotos de la última fila se estiren de más si sobran pocas */
+  .grid::after {
+    content: '';
+    flex-grow: 999999999;
+    display: block;
+  }
+
+  .item{
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--bg-alt);
+    display: none; /* Controlado por JS */
+    
+    /* Magia flexbox: la proporción que calculamos en JS define su crecimiento */
+    height: var(--row-height);
+    flex-grow: var(--aspect);
+    width: calc(var(--row-height) * var(--aspect));
+  }
+
+  .item.visible{
+    display: block;
+  }
+
+  .item .frame{
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .item img, .item .thumb{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .item:hover img, .item:hover .thumb{
+    transform: scale(1.035);
+  }
+
+  .play-badge{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .play-badge span{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(21,20,26,0.55);
+    border: 1px solid rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+  }
+
+  .play-badge svg{ width: 15px; height: 15px; margin-left: 2px; }
+
+  /* ---- Lightbox ---- */
+  .state-msg{
+    width: 100%;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    margin-top: 100px;
+    line-height: 1.7;
+  }
+
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(10,10,13,0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+
+  .lightbox[hidden]{ display: none; }
+
+  .lightbox img, .lightbox video{
+    display: block;
+    max-width: calc(100vw - 64px);
+    max-height: calc(100vh - 64px);
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .lightbox-close{
+    position: absolute;
+    top: 20px;
+    right: 22px;
+    z-index: 101;
+    background: rgba(12,12,15,0.75);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #efece6;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (prefers-reduced-motion: reduce){ *{ transition: none !important; } }
+</style>
+</head>
+<body>
+
+  <div class="grain"></div>
+
+  <div class="switcher" id="switcher">
+    <span class="pill"></span>
+    <button data-type="all" class="active">Todo</button>
+    <button data-type="photo">Fotos</button>
+    <button data-type="video">Vídeos</button>
+  </div>
+
+  <main class="grid" id="grid"></main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">&times;</button>
+    <div id="lightbox-content"></div>
+  </div>
+
+<script src="manifest.js"></script>
+<script>
+(function(){
+  const grid = document.getElementById('grid');
+  const switcher = document.getElementById('switcher');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxContent = document.getElementById('lightbox-content');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  let currentType = 'all';
+  const pill = switcher.querySelector('.pill');
+
+  function movePill(btn){
+    const switcherRect = switcher.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    pill.style.width = btnRect.width + 'px';
+    pill.style.transform = `translateX(${btnRect.left - switcherRect.left}px)`;
+  }
+
+  function showMessage(html){
+    grid.innerHTML = `<div class="state-msg">${html}</div>`;
+  }
+
+  const manifest = (typeof GALLERY_ITEMS !== 'undefined') ? GALLERY_ITEMS : null;
+
+  if(!manifest || !manifest.length){
+    showMessage('La galería está vacía o no se encontró el manifest.');
+    return;
+  }
+
+  function playIconSVG(){
+    return `<svg viewBox="0 0 24 24" fill="none"><path d="M6 4L20 12L6 20V4Z" fill="#efece6"/></svg>`;
+  }
+
+  manifest.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'item';
+    el.dataset.type = item.type;
+
+    // MAGIA: Calculamos la proporción de la foto. El CSS usará esto
+    // para decirle al navegador "Esta foto es el doble de ancha, dale el doble de espacio"
+    const aspect = item.width / item.height;
+    el.style.setProperty('--aspect', aspect);
+
+    if(item.type === 'photo'){
+      el.innerHTML = `
+        <div class="frame">
+          <img src="media_web/${item.file}" loading="lazy" alt="">
+        </div>`;
+    } else {
+      el.innerHTML = `
+        <div class="frame">
+          <img class="thumb" src="media_web/${item.thumb}" loading="lazy" alt="">
+          <div class="play-badge"><span>${playIconSVG()}</span></div>
+        </div>`;
+    }
+
+    el.addEventListener('click', () => openLightbox(item));
+    grid.appendChild(el);
+  });
+
+  function applyFilter(){
+    document.querySelectorAll('.item').forEach(el => {
+      el.classList.toggle('visible', currentType === 'all' || el.dataset.type === currentType);
+    });
+  }
+
+  applyFilter();
+  movePill(switcher.querySelector('button.active'));
+
+  switcher.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if(!btn) return;
+    currentType = btn.dataset.type;
+    switcher.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+    movePill(btn);
+    applyFilter();
+  });
+
+  window.addEventListener('resize', () => {
+    movePill(switcher.querySelector('button.active'));
+  });
+
+  function openLightbox(item){
+    if(item.type === 'photo'){
+      lightboxContent.innerHTML = `<img src="media_web/${item.file}" alt="">`;
+    } else {
+      lightboxContent.innerHTML = `<video src="media_web/${item.file}" controls autoplay playsinline></video>`;
+    }
+    lightbox.hidden = false;
+  }
+
+  function closeLightbox(){
+    lightbox.hidden = true;
+    lightboxContent.innerHTML = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+
+</body>
+</html>

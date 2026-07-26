@@ -1,0 +1,26 @@
+# Archivos de medios (imágenes y vídeos originales)
+media/
+
+# Archivos de medios optimizados para la web y miniaturas
+# (Descomenta la siguiente línea si prefieres NO subir la carpeta optimizada al repositorio)
+# media_web/
+
+# Archivos generados automáticamente
+# (Descomenta si generas el manifest automáticamente en tu servidor/CI)
+# manifest.js
+
+# Entornos virtuales y caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Archivos del sistema operativo (macOS / Windows)
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
