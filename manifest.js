@@ -89,7 +89,7 @@ const GALLERY_ITEMS = [
     "type": "video",
     "width": 1080,
     "height": 1920,
-    "thumb": ".thumbs/BD34F0BD-390D-4CDD-9D09-D8DD5E4AFB59.jpg"
+    "thumb": "thumbs/BD34F0BD-390D-4CDD-9D09-D8DD5E4AFB59.jpg"
   },
   {
     "file": "bef84c5d-0d76-4cbc-bd8f-2140dc3f4066.jpg",
@@ -102,14 +102,14 @@ const GALLERY_ITEMS = [
     "type": "video",
     "width": 1920,
     "height": 1080,
-    "thumb": ".thumbs/Copia de IMG_3712.MOV (1).jpg"
+    "thumb": "thumbs/Copia de IMG_3712.MOV (1).jpg"
   },
   {
     "file": "Copia de VIDEO-2024-08-05-20-09-24 (1).mp4",
     "type": "video",
     "width": 1080,
     "height": 1920,
-    "thumb": ".thumbs/Copia de VIDEO-2024-08-05-20-09-24 (1).jpg"
+    "thumb": "thumbs/Copia de VIDEO-2024-08-05-20-09-24 (1).jpg"
   },
   {
     "file": "d43a36e2-43ad-46b5-b1a2-f8126753e0e0.jpg",
@@ -152,7 +152,7 @@ const GALLERY_ITEMS = [
     "type": "video",
     "width": 480,
     "height": 864,
-    "thumb": ".thumbs/f3820f2c-fcee-4f18-8842-7139f2a383c4.jpg"
+    "thumb": "thumbs/f3820f2c-fcee-4f18-8842-7139f2a383c4.jpg"
   },
   {
     "file": "fc674699-c503-4d58-845e-b89c50bb6b57.jpg",
@@ -201,7 +201,7 @@ const GALLERY_ITEMS = [
     "type": "video",
     "width": 1080,
     "height": 1920,
-    "thumb": ".thumbs/IMG_1895.jpg"
+    "thumb": "thumbs/IMG_1895.jpg"
   },
   {
     "file": "IMG_2063.jpg",
@@ -304,7 +304,7 @@ const GALLERY_ITEMS = [
     "type": "video",
     "width": 1080,
     "height": 1920,
-    "thumb": ".thumbs/IMG_3636.jpg"
+    "thumb": "thumbs/IMG_3636.jpg"
   },
   {
     "file": "IMG_3681.jpg",
@@ -317,7 +317,7 @@ const GALLERY_ITEMS = [
     "type": "video",
     "width": 1080,
     "height": 1920,
-    "thumb": ".thumbs/IMG_3685.jpg"
+    "thumb": "thumbs/IMG_3685.jpg"
   },
   {
     "file": "IMG_3704.jpg",
@@ -372,7 +372,7 @@ const GALLERY_ITEMS = [
     "type": "video",
     "width": 2160,
     "height": 3840,
-    "thumb": ".thumbs/IMG_4028.jpg"
+    "thumb": "thumbs/IMG_4028.jpg"
   },
   {
     "file": "IMG_4030.jpg",
@@ -511,14 +511,14 @@ const GALLERY_ITEMS = [
     "type": "video",
     "width": 1920,
     "height": 1080,
-    "thumb": ".thumbs/ScreenRecording_04-19-2025 15-19-39_1.MOV.jpg"
+    "thumb": "thumbs/ScreenRecording_04-19-2025 15-19-39_1.MOV.jpg"
   },
   {
     "file": "ScreenRecording_04-19-2025 20-50-39_1.MOV.mp4",
     "type": "video",
     "width": 1920,
     "height": 1080,
-    "thumb": ".thumbs/ScreenRecording_04-19-2025 20-50-39_1.MOV.jpg"
+    "thumb": "thumbs/ScreenRecording_04-19-2025 20-50-39_1.MOV.jpg"
   },
   {
     "file": "TcsxaDRp.jpg",
@@ -531,6 +531,6 @@ const GALLERY_ITEMS = [
     "type": "video",
     "width": 640,
     "height": 352,
-    "thumb": ".thumbs/VIDEO-2026-07-26-14-17-24.jpg"
+    "thumb": "thumbs/VIDEO-2026-07-26-14-17-24.jpg"
   }
 ];

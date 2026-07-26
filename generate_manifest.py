@@ -26,7 +26,7 @@ except ImportError:
 # Carpetas de origen y destino
 MEDIA_DIR = Path("media")
 WEB_DIR = Path("media_web")
-THUMBS_DIR = WEB_DIR / ".thumbs"
+THUMBS_DIR = WEB_DIR / "thumbs"
 
 # Añadimos .heic a la lista de imágenes permitidas
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".heic"}
@@ -136,7 +136,7 @@ def main():
                     "type": "video",
                     "width": w,
                     "height": h,
-                    "thumb": f".thumbs/{thumb_name}",
+                    "thumb": f"thumbs/{thumb_name}",
                 })
                 print(f"  + Vídeo optimizado: {dest_video.name} (Miniatura: {w}x{h})")
             except Exception as e:
