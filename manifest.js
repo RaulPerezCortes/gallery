@@ -106,6 +106,12 @@ const GALLERY_ITEMS = [
     "height": 1080
   },
   {
+    "file": "DAA91E2B-D402-48FB-B3FE-0ECB6BCFF431.jpg",
+    "type": "photo",
+    "width": 720,
+    "height": 1080
+  },
+  {
     "file": "dd4e9599-5529-4503-aa0c-956e8d13590e.jpg",
     "type": "photo",
     "width": 1080,
@@ -184,6 +190,12 @@ const GALLERY_ITEMS = [
     "width": 1080,
     "height": 1920,
     "thumb": "thumbs/IMG_1895.jpg"
+  },
+  {
+    "file": "IMG_2008.jpg",
+    "type": "photo",
+    "width": 1080,
+    "height": 810
   },
   {
     "file": "IMG_2063.jpg",
