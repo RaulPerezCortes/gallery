@@ -7,12 +7,6 @@ const GALLERY_ITEMS = [
     "height": 1080
   },
   {
-    "file": "116.jpg",
-    "type": "photo",
-    "width": 1080,
-    "height": 606
-  },
-  {
     "file": "11c923a5-3d24-428f-9148-8d14a6e334f6.jpg",
     "type": "photo",
     "width": 703,
@@ -37,19 +31,7 @@ const GALLERY_ITEMS = [
     "height": 1080
   },
   {
-    "file": "5dcb1cfb-fb58-4639-83fa-deee3a4cddb4.jpg",
-    "type": "photo",
-    "width": 810,
-    "height": 1080
-  },
-  {
     "file": "602b0ca5-7847-479e-ab22-cc8fd047df83.jpg",
-    "type": "photo",
-    "width": 810,
-    "height": 1080
-  },
-  {
-    "file": "79bc1280-fb25-4981-be63-15d171305128.jpg",
     "type": "photo",
     "width": 810,
     "height": 1080
@@ -75,7 +57,7 @@ const GALLERY_ITEMS = [
   {
     "file": "A268C1EE-003A-462F-833D-29D7842D27EC.jpg",
     "type": "photo",
-    "width": 499,
+    "width": 613,
     "height": 1080
   },
   {
@@ -92,10 +74,10 @@ const GALLERY_ITEMS = [
     "thumb": "thumbs/BD34F0BD-390D-4CDD-9D09-D8DD5E4AFB59.jpg"
   },
   {
-    "file": "bef84c5d-0d76-4cbc-bd8f-2140dc3f4066.jpg",
+    "file": "ChatGPT Image Sep 5, 2026, 10_24_09 AM.jpg",
     "type": "photo",
-    "width": 810,
-    "height": 1080
+    "width": 1080,
+    "height": 720
   },
   {
     "file": "Copia de IMG_3712.MOV (1).mp4",
@@ -228,6 +210,12 @@ const GALLERY_ITEMS = [
     "height": 720
   },
   {
+    "file": "IMG_2441.jpg",
+    "type": "photo",
+    "width": 1080,
+    "height": 810
+  },
+  {
     "file": "IMG_2453.jpg",
     "type": "photo",
     "width": 810,
@@ -344,6 +332,13 @@ const GALLERY_ITEMS = [
     "height": 1080
   },
   {
+    "file": "IMG_3850.mp4",
+    "type": "video",
+    "width": 1080,
+    "height": 1920,
+    "thumb": "thumbs/IMG_3850.jpg"
+  },
+  {
     "file": "IMG_3901.jpg",
     "type": "photo",
     "width": 1080,
@@ -387,7 +382,7 @@ const GALLERY_ITEMS = [
     "height": 1080
   },
   {
-    "file": "IMG_4134.jpg",
+    "file": "IMG_4132.jpg",
     "type": "photo",
     "width": 1080,
     "height": 810
@@ -417,9 +412,57 @@ const GALLERY_ITEMS = [
     "height": 1080
   },
   {
+    "file": "IMG_4303.jpg",
+    "type": "photo",
+    "width": 1080,
+    "height": 810
+  },
+  {
+    "file": "IMG_4345.jpg",
+    "type": "photo",
+    "width": 810,
+    "height": 1080
+  },
+  {
+    "file": "IMG_4349.jpg",
+    "type": "photo",
+    "width": 810,
+    "height": 1080
+  },
+  {
+    "file": "IMG_4357.jpg",
+    "type": "photo",
+    "width": 810,
+    "height": 1080
+  },
+  {
+    "file": "IMG_4389.jpg",
+    "type": "photo",
+    "width": 810,
+    "height": 1080
+  },
+  {
+    "file": "IMG_4392.jpg",
+    "type": "photo",
+    "width": 608,
+    "height": 1080
+  },
+  {
+    "file": "IMG_4456.jpg",
+    "type": "photo",
+    "width": 810,
+    "height": 1080
+  },
+  {
+    "file": "IMG_4472.jpg",
+    "type": "photo",
+    "width": 1080,
+    "height": 810
+  },
+  {
     "file": "PHOTO-2024-10-23-15-59-00.jpg",
     "type": "photo",
-    "width": 525,
+    "width": 809,
     "height": 1080
   },
   {
@@ -497,8 +540,8 @@ const GALLERY_ITEMS = [
   {
     "file": "PHOTO-2026-07-26-18-47-33.jpg",
     "type": "photo",
-    "width": 525,
-    "height": 1080
+    "width": 778,
+    "height": 1022
   },
   {
     "file": "PHOTO-2026-07-26-18-47-34.jpg",
